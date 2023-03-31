@@ -1,28 +1,21 @@
 def is_vowel(char):
-    vowels = 'aeiouy'
-    return char in vowels
-    
-def is_consonant(char):
-    return not is_vowel(char)
+    return char in 'aeiouy'
 
 def solution(pattern, source):
     count = 0
     pattern_length = len(pattern)
     source_length = len(source)
-    
-    for i in range(source_length - pattern_length +1):
-        substring = source[i:i+pattern_length]
+
+    for i in range(source_length - pattern_length + 1):
         match = True
-        for j in range(pattern_length):
-            if pattern[j] == '0' and not is_vowel(substring[j]):
-                match = False
-                break
-            if pattern[j] == '1' and not is_consonant(substring[j]):
+        for j, p in enumerate(pattern):
+            char = source[i + j]
+            if (p == '0' and not is_vowel(char)) or (p == '1' and is_vowel(char)):
                 match = False
                 break
         if match:
             count += 1
-            
+
     return count
 
 """ You are given two strings - pattern and source. The first string pattern contains only the symbols 0 and 1, and the second string source contains only lowercase English letters.
