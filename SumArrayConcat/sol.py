@@ -1,7 +1,8 @@
 def solution(a):
+    x = len(a)
     solution = 0
-    for i in range(len(a)):
-        for j in range(len(a)):
+    for i in range(x):
+        for j in range(x):
             prod = str(a[i]) + str(a[j])
             solution += int(prod)
     return solution

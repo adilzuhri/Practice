@@ -1,13 +1,15 @@
 def solution(a):
+    n = len(a)
     b = []
-    for i in range(len(a)):
+
+    for i in range(n):
         if i % 2 == 0:
             b.append(a[i // 2])
         else:
-            b.append(a[-((i + 1) // 2)])
+            b.append(a[n - (i // 2) - 1])
 
-    for i in range(len(b) - 1):
-        if b[i] >= b[i + 1]:
+    for i in range(1, n):
+        if b[i] <= b[i - 1]:
             return False
 
     return True
