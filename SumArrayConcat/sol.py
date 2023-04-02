@@ -3,8 +3,8 @@ def solution(a):
     solution = 0
     for i in range(x):
         for j in range(x):
-            prod = str(a[i]) + str(a[j])
-            solution += int(prod)
+            concat = str(a[i]) + str(a[j])
+            solution += int(concat)
     return solution
     
 
