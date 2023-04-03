@@ -1,25 +1,18 @@
 def solution(a):
-    z = ''.join([str(m) for m in a])
-
-    di = {w:0 for w in range(10)}
-
-    lst = []
-
-    for i in ((z)):
-        if int(i) in di:
-            di[int(i)] += 1
-        else:
-            di[int(i)] = 1
-
-    maximum = max(di, key=di.get)
-
-    print(di)
-
-    for key, value in di.items():
-        if value == di[maximum]:
-            lst.append(key)
-
-    return (lst)
+    digit_count = {}
+    
+    for num in a:
+        for digit in str(abs(num)): 
+            if digit in digit_count:
+                digit_count[digit] += 1
+            else:
+                digit_count[digit] = 1
+    
+    max_count = max(digit_count.values())
+    
+    most_common = [int(digit) for digit in digit_count if digit_count[digit] == max_count]
+    
+    return sorted(most_common)
     
 """ Given an array of integers a, your task is to calculate the digits that occur the most number of times in the array. Return the array of these digits in ascending order.
 Example
