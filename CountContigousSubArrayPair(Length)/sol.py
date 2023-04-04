@@ -1,36 +1,34 @@
 def solution(a, m, k):
     count = 0
     window = {}
-        
+    
+    # Create initial window and fill the dictionary
     for i in range(m):
-        if a[i] in window:
-            window[a[i]] += 1
-        else:
-            window[a[i]] = 1
-    
-    for i in range(len(a) - m):
-        for num in window:
-            complement = k - num
-            if complement in window and (complement != num or window[num] > 1):
-                count += 1
-                break
-        
-        window[a[i]] -= 1
-        if window[a[i]] == 0:
-            del window[a[i]]
-        
-        if a[i + m] in window:
-            window[a[i + m]] += 1
-        else:
-            window[a[i + m]] = 1
-    
-    for num in window:
-        complement = k - num
-        if complement in window and (complement != num or window[num] > 1):
+        window[a[i]] = window.get(a[i], 0) + 1
+
+    # Check if there is a pair with sum equal to k in the initial window
+    for value in window:
+        if k - value in window and (k - value != value or window[value] > 1):
             count += 1
             break
-    
+
+    # Iterate through the remaining elements in the array
+    for i in range(m, len(a)):
+        # Update the window dictionary by removing the leftmost element and adding the new one
+        window[a[i - m]] -= 1
+        if window[a[i - m]] == 0:
+            del window[a[i - m]]
+            
+        window[a[i]] = window.get(a[i], 0) + 1
+
+        # Check if there is a pair with sum equal to k in the current window
+        for value in window:
+            if k - value in window and (k - value != value or window[value] > 1):
+                count += 1
+                break
+
     return count
+
 
 """ Given an array of integers a, your task is to find how many of its contiguous subarrays of length m contain a pair of integers with a sum equal to k.
 

@@ -1,4 +1,4 @@
-def can_be_increasing(numbers):
+def solution(numbers):
     def swap_largest_digit(number):
         num_str = str(number)
         max_digit = max(num_str)
@@ -34,6 +34,7 @@ def can_be_increasing(numbers):
 
     return True
 
+#current solution only passed 18/20 test cases; 8/10 hidden test cases
 
 """ You are given an array of non-negative integers numbers. You are allowed to choose any number from this array and swap any two digits in it. If after the swap operation the number contains leading zeros, they can be omitted and not considered (eg: 010 will be considered just 10).
 

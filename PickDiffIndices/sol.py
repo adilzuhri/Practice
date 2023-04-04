@@ -1,23 +1,8 @@
 def solution(a, k):
-    count = 0
-    n = len(a)
-    
-    if k <= 0 or len(a) < 2:
-        return count
-
-    
-    for i in range(n):
-        for j in range (i+1, n):
-            if (a[i] + a[j]) % k == 0:
-                count += 1
-                
-    return count
-
-#OR
-
-def divisiblePairs(a, k):
-    # initialize the remainder array with 0s
-    remainder = [0] * k
+    # initialize the remainder dictionary with 0s
+    remainder = {}
+    for i in range(k):
+        remainder[i] = 0
     # count the number of remainders
     for i in range(len(a)):
         remainder[a[i] % k] += 1
@@ -32,6 +17,7 @@ def divisiblePairs(a, k):
     result += remainder[0] * (remainder[0]-1) // 2
     return result
 
+#current solution passes 9/11 test cases. Program exceeded allowed memory limit.
 
 """ You are given an array of integers a and an integer k. Your task is to calculate the number of ways to pick two different indices i < j, such that a[i] + a[j] is divisible by k.
 
